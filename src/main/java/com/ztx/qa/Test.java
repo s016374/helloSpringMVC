@@ -1,8 +1,12 @@
 package com.ztx.qa;
 
 
+import com.ztx.qa.dao.DepartmentDao;
+import com.ztx.qa.dao.EmployeeDao;
 import com.ztx.qa.entities.Address;
+import com.ztx.qa.entities.Employee;
 import com.ztx.qa.entities.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -146,5 +150,36 @@ public class Test {
     @RequestMapping(value = "helloView")
     public String testHelloView() {
         return "helloView";
+    }
+
+    @RequestMapping(value = "redirect")
+    public String testRedirect() {
+        System.out.println("redirect:hello");
+        return "redirect:/done.jsp";
+    }
+
+    @Autowired
+    private EmployeeDao employeeDao;
+
+    @RequestMapping(value = "emps")
+    public String listEmployees(ModelMap modelMap) {
+        modelMap.addAttribute("employees", employeeDao.getAll());
+        return "list";
+    }
+
+    @Autowired
+    private DepartmentDao departmentDao;
+
+    @RequestMapping(value = "emp", method = RequestMethod.GET)
+    public String input(ModelMap modelMap) {
+        modelMap.put("employee", new Employee());
+        modelMap.addAttribute("departments", departmentDao.getDepartments());
+        return "input";
+    }
+
+    @RequestMapping(value = "emp", method = RequestMethod.POST)
+    public String save(Employee employee) {
+        employeeDao.save(employee);
+        return "redirect:/mvc/emps";
     }
 }

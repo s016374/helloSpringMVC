@@ -84,5 +84,9 @@
 </form>
 <hr>
 <a href="/mvc/helloView">Test helloView</a>
+<hr>
+<a href="/mvc/redirect">Test redirect</a>
+<hr>
+<a href="/mvc/emps">List All Employees</a>
 </body>
 </html>
