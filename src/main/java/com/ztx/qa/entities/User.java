@@ -4,11 +4,55 @@ package com.ztx.qa.entities;
  * Created by s016374 on 15/8/11.
  */
 public class User {
+    private Integer id;
     private String username;
     private String password;
     private Integer age;
     private String mail;
     private Address address;
+
+    public User() {
+    }
+
+    public User(String username, String password, Integer age, String mail) {
+        this.username = username;
+        this.password = password;
+        this.age = age;
+        this.mail = mail;
+    }
+
+    public User(String username, String password, Integer age, String mail, Address address) {
+        this.username = username;
+        this.password = password;
+        this.age = age;
+        this.mail = mail;
+        this.address = address;
+    }
+
+    public User(Integer id, String username, String password, Integer age, String mail) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.age = age;
+        this.mail = mail;
+    }
+
+    public User(Integer id, String username, String password, Integer age, String mail, Address address) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.age = age;
+        this.mail = mail;
+        this.address = address;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -53,7 +97,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", age=" + age +
                 ", mail='" + mail + '\'' +

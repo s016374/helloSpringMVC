@@ -13,6 +13,11 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="1000"/>
+    </bean>
+
+    <mvc:view-controller path="/success" view-name="success"/>
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
 </beans>

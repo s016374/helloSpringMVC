@@ -13,5 +13,10 @@
 </head>
 <body>
 <h1>Success</h1>
+${requestScope.time}
+${requestScope.name}
+${sessionScope.user}
+<%--${requestScope.user}--%>
+${requestScope.abc}
 </body>
 </html>

@@ -45,6 +45,7 @@
 <a href="/mvc/requestCookieValue">Test cookieValue</a>
 <hr>
 <form action="/mvc/POJO" method="post">
+    ID:<input type="text" name="id"/><br>
     UserName:<input type="text" name="username"/><br>
     Password:<input type="password" name="password"/></br>
     Email:<input type="text" name="mail"/><br>
@@ -64,6 +65,24 @@
 <%--</form:form>--%>
 <hr>
 <a href="/mvc/servletAPI">Test servletAPI</a>
-
+<hr>
+<a href="/mvc/modelAndView">Test modelAndView</a>
+<hr>
+<a href="/mvc/modelMap">Test modelMap</a>
+<hr>
+<a href="/mvc/sessionAttributes">Test sessionAttributes</a>
+<hr>
+<form action="/mvc/modelAttribute" method="post">
+    <input type="hidden" name="id" value="1"/>
+    UserName:<input type="text" name="username" value="Mike"/><br>
+    <%--Password:<input type="password" name="password"/></br>--%>
+    Email:<input type="text" name="mail" value="mike@mail.com"/><br>
+    Age:<input type="text" name="age" value="20"/></br>
+    Province:<input type="text" name="address.province" value="ZheJiang"/><br>
+    City:<input type="text" name="address.city" value="HangZhou"/></br>
+    <input type="submit" value="submit"/>
+</form>
+<hr>
+<a href="/mvc/helloView">Test helloView</a>
 </body>
 </html>

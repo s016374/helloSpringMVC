@@ -1,18 +1,23 @@
 package com.ztx.qa;
 
 
+import com.ztx.qa.entities.Address;
 import com.ztx.qa.entities.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 /**
  * Created by s016374 on 15/8/10.
  */
 @Controller
 @RequestMapping("mvc")
+@SessionAttributes(value = "user")
 public class Test {
     private static final String SUCCESS = "success";
 
@@ -93,8 +98,53 @@ public class Test {
     @RequestMapping(value = "servletAPI")
     public String testServletAPI(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         System.out.println("servletAPI:success");
-        System.out.println("httpServletRequest: " +httpServletRequest);
+        System.out.println("httpServletRequest: " + httpServletRequest);
         System.out.println("httpServletResponse" + httpServletResponse);
         return SUCCESS;
+    }
+
+    @RequestMapping(value = "modelAndView")
+    public ModelAndView testModelAndView() {
+        String viewName = SUCCESS;
+        ModelAndView modelAndView = new ModelAndView(viewName);
+        modelAndView.addObject("time", new Date());
+        System.out.println(modelAndView);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "modelMap")
+    public String testModelMap(ModelMap modelMap) {
+        modelMap.addAttribute("name", "Tom, Mike, Mary, Jane");
+        System.out.println("modelMap:success");
+        System.out.println(modelMap.getClass().getName());
+        return SUCCESS;
+    }
+
+    @RequestMapping(value = "sessionAttributes")
+    public String testSessionAttributes(ModelMap modelMap) {
+        modelMap.addAttribute("user", new User(1, "Jack", "123", 30, "jack@mail.com", new Address("ShanDong", "QinDao")));
+        return SUCCESS;
+    }
+
+    @RequestMapping(value = "modelAttribute")
+//    public String testModelAttribute(User user) {
+    public String testModelAttribute(@ModelAttribute(value = "abc") User user) {
+        System.out.println("modelAttribute:success");
+        System.out.println("user: " + user);
+        return SUCCESS;
+    }
+
+    @ModelAttribute
+    public void getUser(@RequestParam(value = "id", required = false) Integer id, ModelMap modelMap) {
+        if (id != null) {
+//            modelMap.addAttribute("user", new User(1, "Tim", "123456", 25, "Tim@mail.com", new Address("JiangSu", "SuZhou")));
+            modelMap.addAttribute("abc", new User(1, "Tim", "123456", 25, "Tim@mail.com", new Address("JiangSu", "SuZhou")));
+        }
+        System.out.println("ModelAttribute doing");
+    }
+
+    @RequestMapping(value = "helloView")
+    public String testHelloView() {
+        return "helloView";
     }
 }
