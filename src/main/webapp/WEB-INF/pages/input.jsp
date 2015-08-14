@@ -18,8 +18,15 @@
 <body>
 
 <form:form action="${pageContext.request.contextPath}/mvc/emp" method="post" modelAttribute="employee">
-    LastName:<form:input path="lastName"/><br>
-    Email:<form:input path="email"/><br>
+
+    <c:if test="${empty employee.id}">
+        LastName:<form:input path="lastName"/><br>
+    </c:if>
+    <c:if test="${not empty employee.id}">
+        <form:hidden path="id"/>
+        <input type="hidden" name="_method" value="PUT">
+    </c:if>
+    Email:<form:input path="email"/></input><br>
     <%
         Map<Integer, String> genders = new HashMap<Integer, String>();
         genders.put(1, "Male");

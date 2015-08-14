@@ -188,4 +188,24 @@ public class Test {
         employeeDao.delete(id);
         return "redirect:/mvc/emps";
     }
+
+    @RequestMapping(value = "emps/{id}", method = RequestMethod.GET)
+    public String input(@PathVariable("id") Integer id, ModelMap modelMap) {
+        modelMap.addAttribute("employee", employeeDao.get(id));
+        modelMap.addAttribute("departments", departmentDao.getDepartments());
+        return "input";
+    }
+
+    @ModelAttribute
+    public void getEmployee(@RequestParam(value = "id", required = false) Integer id, ModelMap modelMap) {
+        if (null != id) {
+            modelMap.addAttribute("employee", employeeDao.get(id));
+        }
+    }
+
+    @RequestMapping(value = "emp", method = RequestMethod.PUT)
+    public String update(Employee employee) {
+        employeeDao.save(employee);
+        return "redirect:/mvc/emps";
+    }
 }

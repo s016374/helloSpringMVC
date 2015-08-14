@@ -46,7 +46,7 @@
                 <td>${emp.lastName}</td>
                 <td>${emp.email}</td>
                 <td>${emp.gender == 0 ? 'Female' : 'Male'}</td>
-                <td><a href="">Edit</a></td>
+                <td><a href="/mvc/emps/${emp.id}">Edit</a></td>
                 <td><a class="delete" href="/mvc/emp/${emp.id}">Delete</a></td>
             </tr>
         </c:forEach>
