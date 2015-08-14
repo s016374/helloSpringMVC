@@ -182,4 +182,10 @@ public class Test {
         employeeDao.save(employee);
         return "redirect:/mvc/emps";
     }
+
+    @RequestMapping(value = "emp/{id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable("id") Integer id) {
+        employeeDao.delete(id);
+        return "redirect:/mvc/emps";
+    }
 }

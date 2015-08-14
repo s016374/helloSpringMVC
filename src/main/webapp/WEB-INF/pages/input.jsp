@@ -25,6 +25,13 @@
         genders.put(1, "Male");
         genders.put(0, "Female");
         request.setAttribute("genders", genders);
+
+//        getServletConfig().getServletContext().getContextPath();
+//        request.getContextPath();
+//        session.getServletContext();
+//        application.getContextPath();
+//        pageContext.getRequest().getServletContext().getContextPath();
+
     %>
     Gender:<form:radiobuttons path="gender" items="${genders}"/><br>
     Department:<form:select path="department.id" items="${departments}" itemLabel="departmentName" itemValue="id"/><br>
