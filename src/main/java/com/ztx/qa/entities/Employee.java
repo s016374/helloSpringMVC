@@ -1,5 +1,10 @@
 package com.ztx.qa.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
+import java.util.Date;
+
 public class Employee {
 
     private Integer id;
@@ -11,11 +16,11 @@ public class Employee {
 
     private Department department;
 
-//	@DateTimeFormat(pattern="yyyy-MM-dd")
-//	private Date birth;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date birth;
 
-//	@NumberFormat(pattern="#,###,###.#")
-//	private Float salary;
+	@NumberFormat(pattern="#,###,###.#")
+	private Float salary;
 
     public Integer getId() {
         return id;
@@ -57,28 +62,28 @@ public class Employee {
         this.department = department;
     }
 
-//	public Date getBirth() {
-//		return birth;
-//	}
-//
-//	public void setBirth(Date birth) {
-//		this.birth = birth;
-//	}
-//
-//	public Float getSalary() {
-//		return salary;
-//	}
-//
-//	public void setSalary(Float salary) {
-//		this.salary = salary;
-//	}
+	public Date getBirth() {
+		return birth;
+	}
 
-//	@Override
-//	public String toString() {
-//		return "Employee [id=" + id + ", lastName=" + lastName + ", email="
-//				+ email + ", gender=" + gender + ", department=" + department
-//				+ ", birth=" + birth + ", salary=" + salary + "]";
-//	}
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+
+	public Float getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Float salary) {
+		this.salary = salary;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", lastName=" + lastName + ", email="
+				+ email + ", gender=" + gender + ", department=" + department
+				+ ", birth=" + birth + ", salary=" + salary + "]";
+	}
 
     public Employee(Integer id, String lastName, String email, Integer gender,
                     Department department) {

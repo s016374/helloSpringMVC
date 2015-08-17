@@ -11,6 +11,24 @@
 <html>
 <head>
     <title>Spring MVC</title>
+    <script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#json").click(function () {
+                var url = this.href;
+                var args = {};
+                $.post(url, args, function (data) {
+                            for (var i = 0; i < data.length; i++) {
+                                var id = data[i].id;
+                                var lastName = data[i].lastName;
+                                alert(id + ":" + lastName);
+                            }
+                        }
+                )
+                return false;
+            })
+        })
+    </script>
 </head>
 <body>
 <a href="/mvc/helloWorld">Hello World</a>
@@ -55,13 +73,13 @@
     <input type="submit" value="submit"/>
 </form>
 <%--<form:form action="${pageContext.request.contextPath}/mvc/POJO" method="post" modelAttribute="user">--%>
-    <%--UserName:<form:input path="username"/>--%>
-    <%--Password:<form:password path="password"/>--%>
-    <%--Email:<form:input path="mail"/>--%>
-    <%--Age:<form:input path="age"/>--%>
-    <%--Province:<form:input path="address.province"/>--%>
-    <%--City:<form:input path="address.city"/>--%>
-    <%--<input type="submit" value="submit"/>--%>
+<%--UserName:<form:input path="username"/>--%>
+<%--Password:<form:password path="password"/>--%>
+<%--Email:<form:input path="mail"/>--%>
+<%--Age:<form:input path="age"/>--%>
+<%--Province:<form:input path="address.province"/>--%>
+<%--City:<form:input path="address.city"/>--%>
+<%--<input type="submit" value="submit"/>--%>
 <%--</form:form>--%>
 <hr>
 <a href="/mvc/servletAPI">Test servletAPI</a>
@@ -88,5 +106,7 @@
 <a href="/mvc/redirect">Test redirect</a>
 <hr>
 <a href="/mvc/emps">List All Employees</a>
+<hr>
+<a href="/mvc/json" id="json">Test JSON</a>
 </body>
 </html>

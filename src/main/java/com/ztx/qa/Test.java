@@ -9,11 +9,13 @@ import com.ztx.qa.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -179,6 +181,7 @@ public class Test {
 
     @RequestMapping(value = "emp", method = RequestMethod.POST)
     public String save(Employee employee) {
+        System.out.println(employee);
         employeeDao.save(employee);
         return "redirect:/mvc/emps";
     }
@@ -207,5 +210,16 @@ public class Test {
     public String update(Employee employee) {
         employeeDao.save(employee);
         return "redirect:/mvc/emps";
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder webDataBinder) {
+        webDataBinder.setDisallowedFields("lastName");
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "json")
+    public Collection<Employee> testJSON() {
+        return employeeDao.getAll();
     }
 }
