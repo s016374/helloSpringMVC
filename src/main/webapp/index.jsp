@@ -108,5 +108,10 @@
 <a href="/mvc/emps">List All Employees</a>
 <hr>
 <a href="/mvc/json" id="json">Test JSON</a>
+<hr>
+<form action="/mvc/upload" method="post" enctype="multipart/form-data">
+    File:<input type="file" name="file"/><br>
+    <input type="submit" value="submit"/>
+</form>
 </body>
 </html>

@@ -11,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
 
@@ -146,7 +148,7 @@ public class Test {
 //            modelMap.addAttribute("user", new User(1, "Tim", "123456", 25, "Tim@mail.com", new Address("JiangSu", "SuZhou")));
             modelMap.addAttribute("abc", new User(1, "Tim", "123456", 25, "Tim@mail.com", new Address("JiangSu", "SuZhou")));
         }
-        System.out.println("ModelAttribute doing");
+//        System.out.println("ModelAttribute doing");
     }
 
     @RequestMapping(value = "helloView")
@@ -221,5 +223,13 @@ public class Test {
     @RequestMapping(value = "json")
     public Collection<Employee> testJSON() {
         return employeeDao.getAll();
+    }
+
+    @RequestMapping(value = "upload")
+    public String testUpload(@RequestParam(value = "file") MultipartFile file, ModelMap modelMap) throws IOException {
+        modelMap.addAttribute("filename", file.getOriginalFilename());
+        System.out.println("FileName: " + file.getOriginalFilename());
+        System.out.println("InputStream: " + file.getInputStream());
+        return SUCCESS;
     }
 }

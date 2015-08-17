@@ -17,6 +17,10 @@
         <property name="order" value="1000"/>
     </bean>
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="1000000"/>
+    </bean>
+
     <mvc:view-controller path="/success" view-name="success"/>
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
