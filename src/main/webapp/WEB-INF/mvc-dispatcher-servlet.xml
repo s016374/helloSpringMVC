@@ -24,4 +24,10 @@
     <mvc:view-controller path="/success" view-name="success"/>
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/mvc/helloWorld"/>
+            <bean class="com.ztx.qa.interceptors.HelloInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
